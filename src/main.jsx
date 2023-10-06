@@ -5,6 +5,8 @@ import Signup from "./pages/Signup.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Login from "./pages/Login.jsx";
+import RGB from "./pages/RGB.jsx";
+import Clicks from "./pages/clicks.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/rgb",
+    element: <RGB />,
+  },
+  {
+    path: "/Clicks",
+    element: <Clicks />,
   },
 ]);
 
