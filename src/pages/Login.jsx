@@ -4,9 +4,7 @@ export default function Login() {
     return (
 
         <div className="flex justify-center item-center flex-1 h-screen">
-            <h3 className="text-slate-950 font-medium text-xl md:text-slate-200 absolute top-8 left-8 ">
-                Lock&amp;Key
-            </h3>
+           
             <div className="hidden flex-1 bg-blue-950 md:flex flex-col justify-center items-center">
                 <img src="/signup.png" alt="" />
             </div>
