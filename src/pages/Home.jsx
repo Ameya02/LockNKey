@@ -1,7 +1,9 @@
 import React from 'react'
 import homeLogo from '../assets/home.svg'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate()
   return (
       <div className="absolute top-[0px] left-[0px] w-[1440px] flex flex-col items-center justify-center gap-[128px]">
        
@@ -18,7 +20,7 @@ const Home = () => {
                 <div className="relative text-xl tracking-[0.5px] leading-[32px] inline-block w-[612px]">{`Next-Gen Security: 4-in-1 Authentication for Total Protection. `}</div>
               </div>
               <div className="rounded-31xl bg-darkblue overflow-hidden flex flex-row items-center justify-center py-3 px-5 text-base text-oldlace">
-                <div className="relative tracking-[0.5px] leading-[24px]">
+                <div className="relative tracking-[0.5px] leading-[24px] cursor-pointer" onClick={navigate}>
                   Sign Up
                 </div>
               </div>
