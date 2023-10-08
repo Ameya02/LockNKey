@@ -7,6 +7,7 @@ import App from "./App";
 import Login from "./pages/Login.jsx";
 import RGB from "./pages/RGB.jsx";
 import Clicks from "./pages/clicks.jsx";
+import Faceid from "./pages/Faceid";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/Clicks",
     element: <Clicks />,
+  },
+  {
+    path: "/Faceid",
+    element: <Faceid />,
   },
 ]);
 
