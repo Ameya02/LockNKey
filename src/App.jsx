@@ -8,7 +8,7 @@ import Signup from './pages/Signup'
 function App() {
 
   return (
-    <div className="relative bg-lavender w-full h-[1024px] overflow-hidden text-left text-xl text-darkslategray-100 font-montserrat">
+    <div className="relative bg-lavender w-full h-screen overflow-auto text-left text-xl text-darkslategray-100 font-montserrat">
     
     <BrowserRouter>
     <Navbar />
@@ -16,7 +16,7 @@ function App() {
       <Route element={<Home/>} path='/'/>
       <Route element={<Home/>} path='/home'/>
       <Route element={<Login/>} path='/login'/>
-      <Route element={<Signup/>} path='/Signup'/>
+      <Route element={<Signup/>} path='/signup'/>
       <Route/>
     </Routes>
     </BrowserRouter>

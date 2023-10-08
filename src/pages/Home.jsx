@@ -1,12 +1,9 @@
 import React from 'react'
 import homeLogo from '../assets/home.svg'
-import { useNavigate } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 const Home = () => {
-  const navigate = useNavigate()
   return (
-      <div className="absolute top-[0px] left-[0px] w-[1440px] flex flex-col items-center justify-center gap-[128px]">
-       
+      <div className="absolute top-[100px] left-[0px] w-[1440px] flex flex-col items-center justify-center gap-[128px]">
         <div className="relative w-[1157px] h-[521px] z-[1] text-[21px] text-darkslategray-200 font-inter">
           <div className="absolute top-[calc(50%_-_151.5px)] left-[calc(50%_-_578.5px)] w-[629px] h-[302px]">
             <div className="absolute top-[0px] left-[0px] w-[612px] flex flex-col items-start justify-start gap-[24px]">
@@ -20,19 +17,20 @@ const Home = () => {
                 <div className="relative text-xl tracking-[0.5px] leading-[32px] inline-block w-[612px]">{`Next-Gen Security: 4-in-1 Authentication for Total Protection. `}</div>
               </div>
               <div className="rounded-31xl bg-darkblue overflow-hidden flex flex-row items-center justify-center py-3 px-5 text-base text-oldlace">
-                <div className="relative tracking-[0.5px] leading-[24px] cursor-pointer" onClick={navigate}>
+                <Link to={"/signup"}>
+                <div className="relative tracking-[0.5px] leading-[24px] cursor-pointer" >
                   Sign Up
                 </div>
+                </Link>
               </div>
             </div>
           </div>
           <img
-            className="absolute top-[0px] left-[636px] w-[521px] h-[521px] object-cover"
+            className="absolute top-[100px] left-[636px] w-[321px] h-[321px] object-cover"
             alt="Home"
             src={homeLogo}
           />
         </div>
-        <div className="absolute my-0 mx-[!important] top-[101.5px] left-[calc(50%_-_622.5px)] box-border w-[1245px] h-px z-[2] border-t-[1px] border-solid border-gray" />
       </div>
     
   )
