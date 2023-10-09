@@ -9,6 +9,7 @@ import RGB from "./pages/RGB.jsx";
 import Clicks from "./pages/clicks.jsx";
 import Faceid from "./pages/Faceid";
 import Facelogin from "./pages/face-login";
+import Dashboard from "./pages/Dashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/Facelogin",
     element: <Facelogin />,
+  },
+  {
+    path: "/Dashboard",
+    element: <Dashboard />,
   },
 ]);
 
