@@ -8,7 +8,7 @@ import Login from "./pages/Login.jsx";
 import RGB from "./pages/RGB.jsx";
 import Clicks from "./pages/clicks.jsx";
 import Faceid from "./pages/Faceid";
-import Facelogin from "./face-login";
+import Facelogin from "./pages/face-login";
 const router = createBrowserRouter([
   {
     path: "/",
