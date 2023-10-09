@@ -1,6 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 export default function Signup() {
+    const navigate = useNavigate();
+	const emailRef = useRef();
+	const passwordRef = useRef();
+	const passwordConfirmRef = useRef();
+	const [error, setError] = useState("");
+	const [success, setSuccess] = useState("");
+	const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
+		e.preventDefault();
+        console.log(emailRef.current.value,passwordRef.current.value,passwordConfirmRef.current.value)
+		try {
+			setError("");
+			setLoading(true);
+			if (passwordRef.current.value !== passwordConfirmRef.current.value)
+				throw new Error("Passwords do not match");
+			const res = await axios.post(
+				"api/user/signup",
+				{
+					email: emailRef.current.value,
+					password: passwordRef.current.value,
+				},
+				{
+					withCredentials: true,
+				}
+			);
+			setSuccess(res.data.msg);
+			setLoading(false);
+			setTimeout(() => {
+				navigate("/colorauth");
+			}, 4000);
+		} catch (err) {
+			e.target.reset();
+			console.error(err);
+			setError(err.response ? err.response.data.msg : err.msg);
+			setLoading(false);
+		}
+	};
     return (
         <div className="flex justify-center item-center flex-1 h-screen">
             
@@ -8,6 +47,19 @@ export default function Signup() {
                 <img src="/signup.png" alt="" />
             </div>
             <div className=" flex flex-1 bg-blue-50 bg-center justify-center items-center">
+            {error && (
+              <div className="p-2 bg-red-200 text-red-700 rounded mb-4">
+                <i className="bi bi-exclamation-triangle-fill mx-1"></i>
+                {error}
+              </div>
+            )}
+            {success && (
+              <div className="p-2 bg-green-200 text-green-700 rounded mb-4">
+                <i className="bi bi-check-circle-fill mx-1"></i>
+                {success}
+              </div>
+            )}
+           
                 <form className="md:w-1/2 p-8 md:p-0 space-y-5 flex flex-col justify-center">
                     <h1 className="text-xl font-semibold">Sign Up</h1>
                     <p>Please fill in this form to create an account.</p>
@@ -19,6 +71,7 @@ export default function Signup() {
                         <input
                             type="text"
                             placeholder="Enter Email"
+                            ref={emailRef}
                             name="email"
                             required
                             className="bg-inherit border-2 inline-block px-8 py-6 border-slate-300 focus:outline-none focus:border-b-4 focus:border-b-green-400 h-7   w-full"
@@ -31,6 +84,7 @@ export default function Signup() {
                         <input
                             type="password"
                             placeholder="Enter Password"
+                            ref={passwordRef}
                             name="psw"
                             required
                             className="bg-inherit border-2 inline-block px-8 py-6 border-slate-300 focus:outline-none focus:border-b-4 focus:border-b-green-400 h-7   w-full"
@@ -44,6 +98,7 @@ export default function Signup() {
                         <input
                             type="password"
                             placeholder="Repeat Password"
+                            ref={passwordConfirmRef}
                             name="psw-repeat"
                             required
                             className="bg-inherit border-2 inline-block px-8 py-6 border-slate-300 focus:outline-none focus:border-b-4 focus:border-b-green-400 h-7   w-full"
@@ -68,7 +123,7 @@ export default function Signup() {
           </p> */}
                     <div className="clearfix">
                         <button
-                            type="submit"
+                            onClick={handleSubmit}
                             className="bg-blue-600 text-white  mb-2 rounded w-full hover:bg-blue-700 opacity-90 cursor-pointer px-6 py-4"
                         >
                             Sign Up
