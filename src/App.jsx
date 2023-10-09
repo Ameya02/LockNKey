@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import RGB from './pages/RGB'
 import { Clicks } from './pages/clicks'
+import FaceID from './pages/FaceID'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route element={<Signup/>} path='/signup'/>
       <Route element={<RGB/>} path='/colorauth'/>
       <Route element={<Clicks/>} path='/imgauth'/>
+      <Route element={<FaceID/>} path='/faceauth'/>
       <Route/>
     </Routes>
     </BrowserRouter>
