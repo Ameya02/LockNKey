@@ -9,7 +9,7 @@ const Home = () => {
             <div className="absolute top-[0px] left-[0px] w-[612px] flex flex-col items-start justify-start gap-[24px]">
               <div className="flex flex-col items-start justify-start gap-[16px]">
                 <div className="flex flex-col items-start justify-start gap-[8px]">
-                  <div className="relative tracking-[0.15px] leading-[22px] font-medium inline-block w-[612px]">
+                  <div className="relative overflow-hidden tracking-[0.15px] leading-[22px] font-medium inline-block w-[612px]">
                     Innovate Your Security with
                   </div>
                   <b className="relative text-[60px] tracking-[0.5px] leading-[76px] inline-block font-montserrat w-[612px]">{`Lock And Key: Beyond Passwords `}</b>
@@ -26,7 +26,7 @@ const Home = () => {
             </div>
           </div>
           <img
-            className="absolute top-[100px] left-[636px] w-[321px] h-[321px] object-cover"
+            className="absolute top-[100px] left-[636px] w-[500px] h-[400px] object-cover"
             alt="Home"
             src={homeLogo}
           />

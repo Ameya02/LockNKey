@@ -6,7 +6,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import RGB from './pages/RGB'
 import { Clicks } from './pages/clicks'
-import FaceID from './pages/FaceID'
+import Facelogin from './pages/face-login'
+import Dashboard from './pages/Dashboard'
+import Aboutus from './pages/Aboutus'
 
 function App() {
 
@@ -17,12 +19,14 @@ function App() {
     <Navbar />
     <Routes>
       <Route element={<Home/>} path='/'/>
+      <Route element={<Aboutus/>} path='/aboutus'/>
       <Route element={<Home/>} path='/home'/>
       <Route element={<Login/>} path='/login'/>
       <Route element={<Signup/>} path='/signup'/>
       <Route element={<RGB/>} path='/colorauth'/>
       <Route element={<Clicks/>} path='/imgauth'/>
-      <Route element={<FaceID/>} path='/faceauth'/>
+      <Route element={<Facelogin/>} path='/faceauth'/>
+      <Route element={<Dashboard/>} path='/dashboard'/>
       <Route/>
     </Routes>
     </BrowserRouter>

@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
@@ -5,15 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 const RGB = () => {
     const navigate = useNavigate();
+    const toast = useToast()
 	const [colors,setColors] = useState({
         red:0,
         blue:0,
         green:0
     })
     const [pattern,setPattern] = useState("")
-    // const [red, setRed] = useState(0)
-    // const [blue, setBlue] = useState(0)
-    // const [green, setGreen] = useState(0)
+   
 
     const handlePattern = async (e) => {
         e.preventDefault();
@@ -37,12 +37,11 @@ const RGB = () => {
     }
    
 
-	const [error, setError] = useState("");
-	const [success, setSuccess] = useState("");
+	
 	const [loading, setLoading] = useState(false);
     const handleSubmit = async(e)  => {
         try {
-			setError("");
+			
 			setLoading(true);
 			const res = await axios.post(
 				"api/user/colorauth",
@@ -53,14 +52,25 @@ const RGB = () => {
 					withCredentials: true,
 				}
 			);
-			setSuccess(res.data.msg);
+            toast({
+                title: 'Success',
+                description: "Successfully",
+                status: 'success',
+                duration: 6000,
+                isClosable: true,
+              })
 			setLoading(false);
 			setTimeout(() => {
-				navigate("/imgauth");
+				navigate("/faceauth");
 			}, 1000);
 		} catch (err) {
-			console.error(err);
-			setError(err.response ? err.response.data.msg : err.msg);
+            toast({
+                title: 'Error Occurred',
+                description: err.message,
+                status: 'error',
+                duration: 6000,
+                isClosable: true,
+              })
 			setLoading(false);
 		}
 	};

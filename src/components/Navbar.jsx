@@ -11,11 +11,13 @@ const Navbar = () => {
     <Link to={"/"}>
       <b className="relative tracking-[0.5px] leading-[24px] cursor-pointer" >Home</b>
       </Link>
+      <Link to={"/aboutus"}>
       <div
         className="relative tracking-[0.5px] leading-[24px] cursor-pointer"
       >
         About Us
       </div>
+      </Link>
       <div className="relative tracking-[0.5px] leading-[24px]">
         Contact
       </div>

@@ -1,20 +1,19 @@
+import { useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
+    const toast = useToast()
     const navigate = useNavigate();
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const [error, setError] = useState("");
-	const [success, setSuccess] = useState("");
 	const [loading, setLoading] = useState(false);
     const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setError("");
 			setLoading(true);
 			const res = await axios.post(
-				"api/user/signup",
+				"api/user/login",
 				{
 					email: emailRef.current.value,
 					password: passwordRef.current.value,
@@ -23,15 +22,25 @@ export default function Login() {
 					withCredentials: true,
 				}
 			);
-			setSuccess(res.data.msg);
+            toast({
+                title: 'Success',
+                description: "Authenticated Successfully",
+                status: 'success',
+                duration: 6000,
+                isClosable: true,
+              })
 			setLoading(false);
 			setTimeout(() => {
 				navigate("/colorauth");
-			}, 100);
+			}, 2000);
 		} catch (err) {
-			e.target.reset();
-			console.error(err);
-			setError(err.response ? err.response.data.msg : err.msg);
+            toast({
+                title: 'Error Occurred',
+                description: err.message,
+                status: 'error',
+                duration: 6000,
+                isClosable: true,
+              })
 			setLoading(false);
 		}
 	};
@@ -42,19 +51,7 @@ export default function Login() {
             <div className="hidden flex-1 bg-blue-950 md:flex flex-col justify-center items-center">
                 <img src="/signup.png" alt="" />
             </div>
-            <div className=" flex flex-1 bg-blue-50 bg-center justify-center items-center">
-            {error && (
-              <div className="p-2 bg-red-200 text-red-700 rounded mb-4">
-                <i className="bi bi-exclamation-triangle-fill mx-1"></i>
-                {error}
-              </div>
-            )}
-            {success && (
-              <div className="p-2 bg-green-200 text-green-700 rounded mb-4">
-                <i className="bi bi-check-circle-fill mx-1"></i>
-                {success}
-              </div>
-            )}
+            <div className=" flex flex-1 bg-center justify-center items-center">
                 <form className="md:w-1/2 p-8 md:p-0 space-y-5 flex flex-col justify-center">
                     <h1 className="text-xl font-semibold">Login</h1>
                     <p>To keep connecting with us please login with the correct details.</p>
@@ -66,8 +63,8 @@ export default function Login() {
                         <input
                             type="text"
                             placeholder="Enter Email"
+                            ref={emailRef}
                             name="email"
-                            onChange={(e) => {emailRef.current.value = e.target.value}}
                             required
                             className="bg-inherit border-2 inline-block px-8 py-6 border-slate-300 focus:outline-none focus:border-b-4 focus:border-b-green-400 h-7   w-full"
                         />
@@ -80,7 +77,7 @@ export default function Login() {
                             type="password"
                             placeholder="Enter Password"
                             name="psw"
-                            onChange={(e) => {passwordRef.current.value = e.target.value}}
+                            ref={passwordRef}
                             required
                             className="bg-inherit border-2 inline-block px-8 py-6 border-slate-300 focus:outline-none focus:border-b-4 focus:border-b-green-400 h-7   w-full"
                         />
