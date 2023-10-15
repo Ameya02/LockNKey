@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useRef, useState } from 'react';

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import  { useRef, useState } from "react";
 import { useToast } from '@chakra-ui/react'
@@ -10,12 +11,20 @@ export default function Signup() {
 	const passwordConfirmRef = useRef();
 	const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
-
-		e.preventDefault();
+    const handleSubmit = () => {
+    
 		try {
-
-			setLoading(true);
+            if (!emailRef.current.value && !passwordRef.current.value && !passwordConfirmRef.current.value)
+            {
+                toast({
+                    title: 'Required',
+                    description: "All Fields are neccessary",
+                    status: 'warning',
+                    duration: 6000,
+                    isClosable: true,
+                  })
+                throw new Error("Passwords do not match");
+            }
 			if (passwordRef.current.value !== passwordConfirmRef.current.value)
             {
                 toast({
@@ -26,17 +35,18 @@ export default function Signup() {
                     isClosable: true,
                   })
                 throw new Error("Passwords do not match");
+                
             }
-			const res = await axios.post(
-				"api/user/signup",
-				{
-					email: emailRef.current.value,
-					password: passwordRef.current.value,
-				},
-				{
-					withCredentials: true,
-				}
-			);
+			// const res = await axios.post(
+			// 	"api/user/signup",
+			// 	{
+			// 		email: emailRef.current.value,
+			// 		password: passwordRef.current.value,
+			// 	},
+			// 	{
+			// 		withCredentials: true,
+			// 	}
+			// );
 			setLoading(false);
             toast({
                 title: 'Success',
@@ -62,11 +72,10 @@ export default function Signup() {
 	};
     return (
         <div className="flex justify-center item-center flex-1 h-screen">
-           
             <div className="hidden flex-1 bg-blue-950 md:flex flex-col justify-center items-center">
                 <img src="/signup.png" alt="" />
             </div>
-           
+            <div className=" flex flex-1 bg-center justify-center items-center">
                 <form className="md:w-1/2 p-8 md:p-0 space-y-5 flex flex-col justify-center">
                     <h1 className="text-xl font-semibold">Sign Up</h1>
                     <p>Please fill in this form to create an account.</p>
@@ -144,6 +153,7 @@ export default function Signup() {
                     </p>
                 </form>
             </div>
-        </div>
+            </div>
+    
     );
 }

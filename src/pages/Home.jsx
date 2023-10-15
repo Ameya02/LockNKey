@@ -1,4 +1,3 @@
-import React from 'react'
 import homeLogo from '../assets/home.svg'
 import { Link } from 'react-router-dom'
 const Home = () => {
