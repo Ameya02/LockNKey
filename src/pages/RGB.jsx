@@ -1,6 +1,5 @@
 import { useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,6 +39,7 @@ const RGB = () => {
 	
 	const [loading, setLoading] = useState(false);
     const handleSubmit = async(e)  => {
+        e.preventDefault();
         try {
 			
 			setLoading(true);
@@ -54,7 +54,7 @@ const RGB = () => {
 			);
             toast({
                 title: 'Success',
-                description: "Successfully",
+                description: "Success",
                 status: 'success',
                 duration: 6000,
                 isClosable: true,
@@ -62,11 +62,11 @@ const RGB = () => {
 			setLoading(false);
 			setTimeout(() => {
 				navigate("/faceauth");
-			}, 1000);
+			}, 2000);
 		} catch (err) {
             toast({
                 title: 'Error Occurred',
-                description: err.message,
+                description: err.response ? err.response.data.msg : err.msg,
                 status: 'error',
                 duration: 6000,
                 isClosable: true,
@@ -80,18 +80,7 @@ const RGB = () => {
             <div className=' bg-blue-50 flex justify-center items-center h-5/6'>
                 <div className=' bg-white p-8 rounded-lg shadow-xl h-96 w-96 '>
                 
-                {error && (
-              <div className=" bg-red-200 text-red-700 rounded ">
-                <i className="bi bi-exclamation-triangle-fill mx-1"></i>
-                {error}
-              </div>
-            )}
-            {success && (
-              <div className="p-2 bg-green-200 text-green-700 rounded mb-4">
-                <i className="bi bi-check-circle-fill mx-1"></i>
-                {success}
-              </div>
-            )}
+              
            
                     <h2 className='flex justify-center items-center p-1 text-xl font-semibold'>Sign Up</h2>
                     <h3 className='flex justify-center items-center p-3 font-normal'>Enter your pattern !</h3>

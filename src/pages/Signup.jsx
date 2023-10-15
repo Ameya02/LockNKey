@@ -11,46 +11,33 @@ export default function Signup() {
 	const passwordConfirmRef = useRef();
 	const [loading, setLoading] = useState(false);
 
-    const handleSubmit = () => {
-    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 		try {
             if (!emailRef.current.value && !passwordRef.current.value && !passwordConfirmRef.current.value)
             {
-                toast({
-                    title: 'Required',
-                    description: "All Fields are neccessary",
-                    status: 'warning',
-                    duration: 6000,
-                    isClosable: true,
-                  })
-                throw new Error("Passwords do not match");
+    
+                throw new Error("Please fill all the fields");
             }
 			if (passwordRef.current.value !== passwordConfirmRef.current.value)
             {
-                toast({
-                    title: 'Error Occurred',
-                    description: "Passwords do not match",
-                    status: 'error',
-                    duration: 6000,
-                    isClosable: true,
-                  })
                 throw new Error("Passwords do not match");
                 
             }
-			// const res = await axios.post(
-			// 	"api/user/signup",
-			// 	{
-			// 		email: emailRef.current.value,
-			// 		password: passwordRef.current.value,
-			// 	},
-			// 	{
-			// 		withCredentials: true,
-			// 	}
-			// );
+			const res = await axios.post(
+				"api/user/signup",
+				{
+					email: emailRef.current.value,
+					password: passwordRef.current.value,
+				},
+				{
+					withCredentials: true,
+				}
+			);
 			setLoading(false);
             toast({
                 title: 'Success',
-                description: "User Created Successfully",
+                description: "Success",
                 status: 'success',
                 duration: 6000,
                 isClosable: true,
@@ -62,7 +49,7 @@ export default function Signup() {
 			
             toast({
                 title: 'Error Occurred',
-                description: err,
+                description: err.response ? err.response.data.msg : err.msg,
                 status: 'error',
                 duration: 6000,
                 isClosable: true,

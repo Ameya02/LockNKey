@@ -13,7 +13,7 @@ const Dashboard = () => {
 		else{
 			setUser(u)
 		}
-	},[user,navigate])
+	},[])
 	
 	
 	const logout = () => {
