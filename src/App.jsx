@@ -5,10 +5,10 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import RGB from './pages/RGB'
-import { Clicks } from './pages/clicks'
 import Facelogin from './pages/face-login'
 import Dashboard from './pages/Dashboard'
 import Aboutus from './pages/Aboutus'
+import ImageSelect from './pages/imageSelect'
 
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
       <Route element={<Login/>} path='/login'/>
       <Route element={<Signup/>} path='/signup'/>
       <Route element={<RGB/>} path='/colorauth'/>
-      <Route element={<Clicks/>} path='/imgauth'/>
+      <Route element={<ImageSelect/>} path='/imgauth'/>
       <Route element={<Facelogin/>} path='/faceauth'/>
       <Route element={<Dashboard/>} path='/dashboard'/>
       <Route/>

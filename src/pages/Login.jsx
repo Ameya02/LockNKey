@@ -14,7 +14,7 @@ export default function Login() {
 		try {
 			setLoading(true);
 			const res = await axios.post(
-				"api/user/login",
+				"/api/user/login",
 				{
 					email: emailRef.current.value,
 					password: passwordRef.current.value,
@@ -32,12 +32,12 @@ export default function Login() {
               })
 			setLoading(false);
 			setTimeout(() => {
-				navigate("/colorauth");
+				navigate("/imageauth");
 			}, 2000);
 		} catch (err) {
             toast({
                 title: 'Error Occurred',
-                description: err.message,
+                description: err.response ? err.response.data.msg : err.msg,
                 status: 'error',
                 duration: 6000,
                 isClosable: true,
