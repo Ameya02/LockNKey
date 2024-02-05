@@ -73,7 +73,7 @@ const RGB = () => {
       });
       setLoading(false);
       setTimeout(() => {
-        navigate("/imgauth");
+        navigate("/faceauth");
       }, 2000);
     } catch (err) {
       toast({

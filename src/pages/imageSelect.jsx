@@ -95,7 +95,7 @@ const ImageSelect = () => {
           });
           setLoading(false);
           setTimeout(() => {
-            navigate("/faceauth");
+            navigate("/colorauth");
           }, 2000);
         } catch (err) {
           toast({

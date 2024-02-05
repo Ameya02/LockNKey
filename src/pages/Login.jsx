@@ -32,7 +32,7 @@ export default function Login() {
               })
 			setLoading(false);
 			setTimeout(() => {
-				navigate("/colorauth");
+				navigate("/imageauth");
 			}, 2000);
 		} catch (err) {
             toast({
