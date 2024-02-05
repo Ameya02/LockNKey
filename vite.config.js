@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
     port: 3000,
     proxy: {
       '/api': {
-        target: processEnvValues.proxy.env.VITE_API_URL,
+        target: processEnvValues['process.env'].VITE_API_URL,
        
       }
     }
