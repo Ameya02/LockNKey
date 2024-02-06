@@ -1,1 +1,14 @@
-{ "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }] }
+{
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "rewrites": [
+    {
+    "source": "/api/(.*)",
+    "destination": "/api/index.js"
+    },
+    {
+    "source": "/(.*)",
+    "destination": "/"
+    }
+    ]
+    }
