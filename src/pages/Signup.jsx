@@ -33,7 +33,6 @@ export default function Signup() {
       };
 
     const handlePassword = (e) => {
-        console.log(e.target.value)
         if (e.target.value !== passwordRef.current.value) {
             setCheckPassword(1);
           } else {
