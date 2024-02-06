@@ -20,21 +20,16 @@ export default defineConfig(({ mode }) => {
         {},
       )
     }
+    console.log(processEnvValues)
   return {
   plugins: [react()],
   server: {
-      watch: {
-        usePolling: true,
-      },
-      host: false, // needed for the Docker Container port mapping to work
-      strictPort: true,
-    port: 3000,
+    port: processEnvValues['process.env'].PORT,
     proxy: {
       '/api': {
         target: processEnvValues['process.env'].VITE_API_URL,
         changeOrigin: true,
-        secure: false,
-        agent: new https.Agent()
+        secure: true,
       }
     }
   }
