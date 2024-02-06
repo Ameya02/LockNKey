@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import http from "https"
+import https from "https"
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
 
@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
         target: processEnvValues['process.env'].VITE_API_URL,
         changeOrigin: true,
         secure: false,
-        agent: new http.Agent()
+        agent: new https.Agent()
       }
     }
   }

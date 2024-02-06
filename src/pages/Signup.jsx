@@ -73,7 +73,7 @@ export default function Signup() {
                 isClosable: true,
               })
 			setTimeout(() => {
-				navigate("/colorauth");
+				navigate("/imageauth");
 			}, 4000);
 		} catch (err) {
 			
